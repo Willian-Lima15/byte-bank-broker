@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { map, pluck, tap } from 'rxjs/operators'
-import { Acao } from './modelo/model';
+import { Acao, AcoesApi } from './modelo/model';
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +13,7 @@ export class AcoesService {
   ) { }
 
   getAcoes() {
-    return this.http.get<any>('http://localhost:3000/acoes').pipe(tap((valor)=> console.log(valor)),
+    return this.http.get<AcoesApi>('http://localhost:3000/acoes').pipe(tap((valor)=> console.log(valor)),
       pluck("payloa"),
       map((acoes) => acoes.sort((acoesA, acoesB) => this.ordenaPorCodigo(acoesA, acoesB))));
   };
