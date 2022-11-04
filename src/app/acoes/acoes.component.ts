@@ -11,7 +11,9 @@ import { merge } from 'rxjs';
 })
 export class AcoesComponent {
   acoesInput = new FormControl();
-  todasAcoes$ = this.acoesService.getAcoes().pipe(tap(() => { console.log }));
+
+  todasAcoes$ = this.acoesService.getAcoes().pipe(tap(() => {  console.log('Fluxo Inicial') }));
+
   filtroPeloInput$ = this.acoesInput.valueChanges.pipe(
     tap(() => { 'Fluxo do filtro' }),
     switchMap((valorDigitado) => this.acoesService.getAcoes(valorDigitado)));
